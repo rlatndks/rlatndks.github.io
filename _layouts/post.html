@@ -1,9 +1,8 @@
+```html
 ---
 layout: default
 ---
 <h1>{{ page.title }}</h1>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.min.js"></script>
 
 <article>
   {{ content }}
@@ -11,3 +10,37 @@ layout: default
 
 <hr>
 <a href="/">목록으로 돌아가기</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.min.js"></script>
+<script>
+// 모든 코드 블록(pre 태그)을 찾아서 버튼을 붙입니다.
+document.querySelectorAll('pre').forEach((codeBlock) => {
+    // 버튼 생성
+    const button = document.createElement('button');
+    button.className = 'copy-code-button';
+    button.type = 'button';
+    button.innerText = 'Copy';
+
+    // 버튼 클릭 이벤트
+    button.addEventListener('click', () => {
+        const code = codeBlock.innerText;
+        navigator.clipboard.writeText(code).then(() => {
+            button.innerText = 'Copied!';
+            setTimeout(() => { button.innerText = 'Copy'; }, 2000);
+        });
+    });
+
+    // 버튼을 코드 블록 바로 앞에 삽입
+    codeBlock.parentNode.insertBefore(button, codeBlock);
+});
+</script>
+
+<style>
+.copy-code-button {
+    background: #f1f1f1; border: 1px solid #ccc;
+    padding: 3px 8px; font-size: 12px; cursor: pointer;
+    border-radius: 5px; margin-bottom: 5px;
+}
+.copy-code-button:hover { background: #ddd; }
+pre { position: relative; } /* 버튼 위치 기준점 */
+</style>
