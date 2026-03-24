@@ -1,7 +1,6 @@
 theme: minima
-title: 나의 3D 스크립트 저장소
+title: 3D Script Storage
 description: 마야, 블렌더 등 스크립트 모음
 
 # 이 아래는 기본 설정입니다
-plugins:
-  - jekyll-feed
+
