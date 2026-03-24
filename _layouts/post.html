@@ -1,46 +1,77 @@
-```html
 ---
 layout: default
 ---
-<h1>{{ page.title }}</h1>
+<div class="post-container">
+  <h1>{{ page.title }}</h1>
+  
+  <article class="post-content">
+    {{ content }}
+  </article>
 
-<article>
-  {{ content }}
-</article>
+  <hr>
+  <a href="/">목록으로 돌아가기</a>
+</div>
 
-<hr>
-<a href="/">목록으로 돌아가기</a>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
 <script>
-// 모든 코드 블록(pre 태그)을 찾아서 버튼을 붙입니다.
-document.querySelectorAll('pre').forEach((codeBlock) => {
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('pre').forEach((codeBlock) => {
     // 버튼 생성
     const button = document.createElement('button');
-    button.className = 'copy-code-button';
+    button.className = 'copy-button';
     button.type = 'button';
     button.innerText = 'Copy';
 
     // 버튼 클릭 이벤트
     button.addEventListener('click', () => {
-        const code = codeBlock.innerText;
-        navigator.clipboard.writeText(code).then(() => {
-            button.innerText = 'Copied!';
-            setTimeout(() => { button.innerText = 'Copy'; }, 2000);
-        });
+      const code = codeBlock.innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        button.innerText = 'Copied!';
+        button.classList.add('copied');
+        setTimeout(() => { 
+          button.innerText = 'Copy';
+          button.classList.remove('copied');
+        }, 2000);
+      });
     });
 
-    // 버튼을 코드 블록 바로 앞에 삽입
-    codeBlock.parentNode.insertBefore(button, codeBlock);
+    // 코드 블록을 감싸는 컨테이너 생성 (버튼 위치 고정용)
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-wrapper';
+    codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+    wrapper.appendChild(codeBlock);
+    wrapper.appendChild(button);
+  });
 });
 </script>
 
 <style>
-.copy-code-button {
-    background: #f1f1f1; border: 1px solid #ccc;
-    padding: 3px 8px; font-size: 12px; cursor: pointer;
-    border-radius: 5px; margin-bottom: 5px;
-}
-.copy-code-button:hover { background: #ddd; }
-pre { position: relative; } /* 버튼 위치 기준점 */
+  .post-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+  .code-wrapper { position: relative; margin: 20px 0; }
+  
+  pre { 
+    background: #f4f4f4; 
+    padding: 15px; 
+    border-radius: 8px; 
+    overflow-x: auto; 
+    border: 1px solid #ddd;
+    line-height: 1.5;
+  }
+
+  .copy-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s;
+  }
+
+  .copy-button:hover { background: #eee; }
+  .copy-button.copied { background: #4CAF50; color: white; border-color: #4CAF50; }
 </style>
+eof
