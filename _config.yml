@@ -1,3 +1,9 @@
 title: "3D Script Storage"
 description: "Maya & Blender Scripts for 3D Artist"
 theme: minima
+
+minima:
+  show_excerpts: false
+  
+feed:
+  disable: true
