@@ -4,6 +4,4 @@ theme: minima
 
 # 불필요한 RSS 피드 기능 끄기
 plugins:
-  - jekyll-feed
-feed:
-  path: false
+ 
