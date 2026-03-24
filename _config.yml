@@ -1,6 +1,9 @@
-theme: minima
-title: 3D Script Storage
-description: 마야, 블렌더 등 스크립트 모음
+title: "3D Script Storage"
+description: "Maya & Blender Scripts for 3D Artist"
+remote_theme: pages-themes/minima@v2.5.1
 
-# 이 아래는 기본 설정입니다
-
+# 불필요한 RSS 피드 기능 끄기
+plugins:
+  - jekyll-feed
+feed:
+  path: false
