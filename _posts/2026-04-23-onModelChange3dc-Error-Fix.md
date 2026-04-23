@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "onModelChange3dc 에러 해결 스크립트"
-date: 2026-03-24
+date: 2026-04-23
 ---
 
 Maya 실행 시 또는 씬 작업 중 간헐적으로 발생하는 `Cannot find procedure "onModelChange3dc"` 에러를 해결하는 Python 스크립트입니다.
